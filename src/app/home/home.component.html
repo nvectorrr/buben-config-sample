@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Лупа без пупы</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="1-1" *ngIf="showFirst">
+        <img class="centered" src="../../assets/img/1.png" width="600" height="600">
+      </div>
+      <div id="1-2" *ngIf="showSecond">
+        <img class="centered" src="../../assets/img/1-2.png" width="600" height="600">
+      </div>
+      <div id="2">
+        <img class="centered" src="../../assets/img/2.png" width="600" height="600">
+      </div>
+      <div id="3">
+        <img class="centered" src="../../assets/img/3.png" width="600" height="600">
+      </div>
+      <div id="4">
+        <img class="centered" src="../../assets/img/4.png" width="600" height="600">
+      </div>
+      <div id="5">
+        <img class="centered" src="../../assets/img/5.png" width="600" height="600">
+      </div>
+    </div>
+    <button type="button" (click)="setFirst()">First</button>
+    <button type="button" (click)="setSecond()">Second</button>
+  </body>
+</html>
