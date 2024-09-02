@@ -1,12 +1,23 @@
 .container {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .left-panel {
+    width: 30%;
+  }
+  
+  .right-panel {
+    width: 70%;
     text-align: center;
-    color: white;
-}
-
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+  }
+  
+  .dropdown-container {
+    margin-bottom: 20px;
+  }
+  
+  .big-image {
+    max-width: 100%;
+    height: auto;
+  }
