@@ -2,7 +2,7 @@
     <div class="left-panel">
       <div class="dropdown-container">
         <label for="dropdown1">Safe Type:</label>
-        <select id="dropdown1" [(ngModel)]="safeType">
+        <select id="dropdown1" [(ngModel)]="safeType" (ngModelChange)="onChangeSafeType($event)">
           <option *ngFor="let option of safeTypesList" [value]="option">{{ option }}</option>
         </select>
       </div>

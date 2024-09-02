@@ -22,4 +22,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onChangeSafeType(selectedType : any) {
+    if (selectedType == 1) {
+      this.safeStylesList = ['1', '2', '3'];
+    } else {
+      this.safeStylesList = ['4', '5', '6'];
+    }
+}
+
 }
