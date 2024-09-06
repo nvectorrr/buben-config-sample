@@ -12,6 +12,12 @@
           <option *ngFor="let option2 of safeFurnitureOptions" [value]="option2">{{ option2 }}</option>
         </select>
       </div>
+      <div class="dropdown-container">
+        <label for="dropdown1">Safe Outline:</label>
+        <select id="dropdown1" [(ngModel)]="safeTypeOptions" (ngModelChange)="onChangeSafeOutline($event)">
+          <option *ngFor="let option1 of safeTypeOptions" [value]="option1">{{ option1 }}</option>
+        </select>
+      </div>
     </div>
     <div class="right-panel">
 
@@ -42,5 +48,26 @@
       <img *ngIf="selectedSafeFurnitureOptions === 'Gold'" src="../../assets/img/closed_safe_type/2/furnite-3.png" alt="Big image" class="child-image">
       <img *ngIf="selectedSafeFurnitureOptions === 'Graphite'" src="../../assets/img/closed_safe_type/2/furnite-4.png" alt="Big image" class="child-image">
       <img *ngIf="selectedSafeFurnitureOptions === 'Grey'" src="../../assets/img/closed_safe_type/2/furnite-5.png" alt="Big image" class="child-image">
+
+      <!-- окантовка -->
+      <img *ngIf="selectedSafeOutlineOption === 'Black'" src="../../assets/img/closed_safe_type/3/outline-1.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Blue'" src="../../assets/img/closed_safe_type/3/outline-2.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Brown'" src="../../assets/img/closed_safe_type/3/outline-3.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Cherry Red'" src="../../assets/img/closed_safe_type/3/outline-4.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Cream'" src="../../assets/img/closed_safe_type/3/outline-5.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Frozen Blue'" src="../../assets/img/closed_safe_type/3/outline-6.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Grey'" src="../../assets/img/closed_safe_type/3/outline-7.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Havanna Brown'" src="../../assets/img/closed_safe_type/3/outline-8.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Honey Yellow'" src="../../assets/img/closed_safe_type/3/outline-9.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Jungle Green'" src="../../assets/img/closed_safe_type/3/outline-10.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Lagoon Blue'" src="../../assets/img/closed_safe_type/3/outline-11.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Lava Orange'" src="../../assets/img/closed_safe_type/3/outline-12.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Lemon Yellow'" src="../../assets/img/closed_safe_type/3/outline-13.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Lizzard Green'" src="../../assets/img/closed_safe_type/3/outline-14.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Maple Green'" src="../../assets/img/closed_safe_type/3/outline-15.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Mint Ice'" src="../../assets/img/closed_safe_type/3/outline-16.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Ocean Blue'" src="../../assets/img/closed_safe_type/3/outline-17.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'Pebble Grey'" src="../../assets/img/closed_safe_type/3/outline-18.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeOutlineOption === 'White'" src="../../assets/img/closed_safe_type/3/outline-19.png" alt="Big image" class="child-image">
     </div>
   </div>

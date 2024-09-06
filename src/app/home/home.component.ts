@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   selectedSafeTypeOption : string;
   selectedSafeFurnitureOptions : string;
+  selectedSafeOutlineOption : string;
 
   constructor(private titleService:Title) {
     this.titleService.setTitle("Configurator");
@@ -27,6 +28,9 @@ export class HomeComponent implements OnInit {
     // металлические детали
     this.safeFurnitureOptions = this.safeFurnitureList.map(option => Object.values(option)[0]);
     this.selectedSafeFurnitureOptions = this.safeFurnitureOptions[0];
+
+    // окантовка
+    this.selectedSafeOutlineOption = this.safeTypeOptions[0];
   }
 
   ngOnInit(): void {}
@@ -35,13 +39,17 @@ export class HomeComponent implements OnInit {
     this.selectedSafeTypeOption = selection;
 
     this.safeTypeOptions = this.safeTypesList.map(option => Object.values(option)[0]);
-    console.log(this.safeTypeOptions);
   }
 
   onChangeSafeFurniture(selection : string) {
     this.selectedSafeFurnitureOptions = selection;
 
     this.safeFurnitureOptions = this.safeFurnitureOptions = this.safeFurnitureList.map(option => Object.values(option)[0]);
-    console.log(this.safeFurnitureOptions);
+  }
+
+  onChangeSafeOutline(selection : string) {
+    this.selectedSafeOutlineOption = selection;
+
+    this.safeTypeOptions = this.safeTypesList.map(option => Object.values(option)[0]);
   }
 }
