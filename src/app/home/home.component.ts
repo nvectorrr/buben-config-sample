@@ -10,13 +10,17 @@ export class HomeComponent implements OnInit {
 
   safeTypesList = [{1 : 'Black'}, {2 : 'Blue'}, {3 : 'Brown'}, {4 : 'Cherry Red'}, {5 : 'Cream'}, {6 : 'Frozen Blue'}, {7 : 'Grey'}, {8 : 'Havanna Brown'}, {9 : 'Honey Yellow'}, {10 : 'Jungle Green'}, {11 : 'Lagoon Blue'}, {12 : 'Lava Orange'}, {13 : 'Lemon Yellow'}, {14 : 'Lizzard Green'}, {15 : 'Maple Green'}, {16 : 'Mint Ice'}, {17 : 'Ocean Blue'}, {18 : 'Pebble Grey'}, {19 : 'White'}];
   safeFurnitureList = [{1 : 'Bronze'}, {2 : 'Classic'}, {3 : 'Gold'}, {4 : 'Graphite'}, {5 : 'Grey'}];
+  safeThreadsList = [{1 : 'Black'}, {2 : 'Brown'}, {3 : 'Red'}, {4 : 'White'}];
 
   safeTypeOptions : string[];
   safeFurnitureOptions : string[];
+  safeThreadsOptions : string[];
 
   selectedSafeTypeOption : string;
   selectedSafeFurnitureOptions : string;
   selectedSafeOutlineOption : string;
+  selectedSafeVerticalThreadOption : string;
+  selectedSafeHorizontalThreadOption : string;
 
   constructor(private titleService:Title) {
     this.titleService.setTitle("Configurator");
@@ -31,6 +35,13 @@ export class HomeComponent implements OnInit {
 
     // окантовка
     this.selectedSafeOutlineOption = this.safeTypeOptions[0];
+
+    // строчка в целом
+    this.safeThreadsOptions = this.safeThreadsList.map(option => Object.values(option)[0]);
+
+    // вертикальная и горизонтальная
+    this.selectedSafeVerticalThreadOption = this.safeThreadsOptions[0];
+    this.selectedSafeHorizontalThreadOption = this.safeThreadsOptions[0];
   }
 
   ngOnInit(): void {}
@@ -51,5 +62,17 @@ export class HomeComponent implements OnInit {
     this.selectedSafeOutlineOption = selection;
 
     this.safeTypeOptions = this.safeTypesList.map(option => Object.values(option)[0]);
+  }
+
+  onChangeSafeVerticalOutline(selected : string) {
+    this.selectedSafeVerticalThreadOption = selected;
+
+    this.safeThreadsOptions = this.safeThreadsList.map(option => Object.values(option)[0]);
+  }
+
+  onChangeSafeHorizontalOutline(selected : string) {
+    this.selectedSafeHorizontalThreadOption = selected;
+
+    this.safeThreadsOptions = this.safeThreadsList.map(option => Object.values(option)[0]);
   }
 }

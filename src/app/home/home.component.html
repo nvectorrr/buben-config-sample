@@ -1,15 +1,15 @@
 <div class="container">
     <div class="left-panel">
       <div class="dropdown-container">
-        <label for="dropdown1">Цвет кожи:</label>
-        <select id="dropdown1" [(ngModel)]="safeTypeOptions" (ngModelChange)="onChangeSafeType($event)">
-          <option *ngFor="let option1 of safeTypeOptions" [value]="option1">{{ option1 }}</option>
-        </select>
-      </div>
-      <div class="dropdown-container">
         <label for="dropdown2">Фурнитура:</label>
         <select id="dropdown2" [(ngModel)]="safeFurnitureOptions" (ngModelChange)="onChangeSafeFurniture($event)">
           <option *ngFor="let option2 of safeFurnitureOptions" [value]="option2">{{ option2 }}</option>
+        </select>
+      </div>
+      <div class="dropdown-container">
+        <label for="dropdown1">Цвет кожи:</label>
+        <select id="dropdown1" [(ngModel)]="safeTypeOptions" (ngModelChange)="onChangeSafeType($event)">
+          <option *ngFor="let option1 of safeTypeOptions" [value]="option1">{{ option1 }}</option>
         </select>
       </div>
       <div class="dropdown-container">
@@ -33,33 +33,33 @@
     </div>
     <div class="right-panel">
 
-      <!-- сама тушка сейфа -->
-      <img *ngIf="selectedSafeTypeOption === 'Black'" src="../../assets/img/closed_safe_type/1/base-1.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Blue'" src="../../assets/img/closed_safe_type/1/base-2.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Brown'" src="../../assets/img/closed_safe_type/1/base-3.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Cherry Red'" src="../../assets/img/closed_safe_type/1/base-4.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Cream'" src="../../assets/img/closed_safe_type/1/base-5.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Frozen Blue'" src="../../assets/img/closed_safe_type/1/base-6.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Grey'" src="../../assets/img/closed_safe_type/1/base-7.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Havanna Brown'" src="../../assets/img/closed_safe_type/1/base-8.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Honey Yellow'" src="../../assets/img/closed_safe_type/1/base-9.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Jungle Green'" src="../../assets/img/closed_safe_type/1/base-10.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Lagoon Blue'" src="../../assets/img/closed_safe_type/1/base-11.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Lava Orange'" src="../../assets/img/closed_safe_type/1/base-12.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Lemon Yellow'" src="../../assets/img/closed_safe_type/1/base-13.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Lizzard Green'" src="../../assets/img/closed_safe_type/1/base-14.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Maple Green'" src="../../assets/img/closed_safe_type/1/base-15.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Mint Ice'" src="../../assets/img/closed_safe_type/1/base-16.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Ocean Blue'" src="../../assets/img/closed_safe_type/1/base-17.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'Pebble Grey'" src="../../assets/img/closed_safe_type/1/base-18.png" alt="Big image" class="base-image">
-      <img *ngIf="selectedSafeTypeOption === 'White'" src="../../assets/img/closed_safe_type/1/base-19.png" alt="Big image" class="base-image">
-
       <!-- металлические части -->
-      <img *ngIf="selectedSafeFurnitureOptions === 'Bronze'" src="../../assets/img/closed_safe_type/2/furnite-1.png" alt="Big image" class="child-image">
-      <img *ngIf="selectedSafeFurnitureOptions === 'Classic'" src="../../assets/img/closed_safe_type/2/furnite-2.png" alt="Big image" class="child-image">
-      <img *ngIf="selectedSafeFurnitureOptions === 'Gold'" src="../../assets/img/closed_safe_type/2/furnite-3.png" alt="Big image" class="child-image">
-      <img *ngIf="selectedSafeFurnitureOptions === 'Graphite'" src="../../assets/img/closed_safe_type/2/furnite-4.png" alt="Big image" class="child-image">
-      <img *ngIf="selectedSafeFurnitureOptions === 'Grey'" src="../../assets/img/closed_safe_type/2/furnite-5.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeFurnitureOptions === 'Bronze'" src="../../assets/img/closed_safe_type/2/furnite-1.png" alt="Big image" class="base-image">
+      <img *ngIf="selectedSafeFurnitureOptions === 'Classic'" src="../../assets/img/closed_safe_type/2/furnite-2.png" alt="Big image" class="base-image">
+      <img *ngIf="selectedSafeFurnitureOptions === 'Gold'" src="../../assets/img/closed_safe_type/2/furnite-3.png" alt="Big image" class="base-image">
+      <img *ngIf="selectedSafeFurnitureOptions === 'Graphite'" src="../../assets/img/closed_safe_type/2/furnite-4.png" alt="Big image" class="base-image">
+      <img *ngIf="selectedSafeFurnitureOptions === 'Grey'" src="../../assets/img/closed_safe_type/2/furnite-5.png" alt="Big image" class="base-image">
+
+      <!-- сама тушка сейфа -->
+      <img *ngIf="selectedSafeTypeOption === 'Black'" src="../../assets/img/closed_safe_type/1/base-1.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Blue'" src="../../assets/img/closed_safe_type/1/base-2.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Brown'" src="../../assets/img/closed_safe_type/1/base-3.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Cherry Red'" src="../../assets/img/closed_safe_type/1/base-4.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Cream'" src="../../assets/img/closed_safe_type/1/base-5.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Frozen Blue'" src="../../assets/img/closed_safe_type/1/base-6.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Grey'" src="../../assets/img/closed_safe_type/1/base-7.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Havanna Brown'" src="../../assets/img/closed_safe_type/1/base-8.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Honey Yellow'" src="../../assets/img/closed_safe_type/1/base-9.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Jungle Green'" src="../../assets/img/closed_safe_type/1/base-10.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Lagoon Blue'" src="../../assets/img/closed_safe_type/1/base-11.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Lava Orange'" src="../../assets/img/closed_safe_type/1/base-12.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Lemon Yellow'" src="../../assets/img/closed_safe_type/1/base-13.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Lizzard Green'" src="../../assets/img/closed_safe_type/1/base-14.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Maple Green'" src="../../assets/img/closed_safe_type/1/base-15.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Mint Ice'" src="../../assets/img/closed_safe_type/1/base-16.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Ocean Blue'" src="../../assets/img/closed_safe_type/1/base-17.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'Pebble Grey'" src="../../assets/img/closed_safe_type/1/base-18.png" alt="Big image" class="child-image">
+      <img *ngIf="selectedSafeTypeOption === 'White'" src="../../assets/img/closed_safe_type/1/base-19.png" alt="Big image" class="child-image">
 
       <!-- окантовка -->
       <img *ngIf="selectedSafeOutlineOption === 'Black'" src="../../assets/img/closed_safe_type/3/outline-1.png" alt="Big image" class="child-image">
