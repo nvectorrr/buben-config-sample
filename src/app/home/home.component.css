@@ -1,6 +1,5 @@
 .container {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
   }
   
@@ -9,15 +8,23 @@
   }
   
   .right-panel {
-    width: 70%;
+    position: relative;
     text-align: center;
+    color: white;
   }
   
   .dropdown-container {
     margin-bottom: 20px;
   }
   
-  .big-image {
-    max-width: 100%;
-    height: auto;
+  .base-image {
+    width: 1024px;
+    height: 1024px;
+    position: absolute;
+  }
+
+  .child-image {
+    width: 1024px;
+    height: 1024px;
+    position: absolute;
   }
