@@ -8,10 +8,21 @@
     </div>
     <div class="dropdown-container">
       <label for="dropdown1">Цвет кожи:</label>
-      <select id="dropdown1" [(ngModel)]="safeTypeOptions" (ngModelChange)="onChangeSafeType($event)">
+      <select id="dropdown1" [(ngModel)]="safeTypeOptions" (selectionChange)="onChangeSafeType($event)">
         <option *ngFor="let option1 of safeTypeOptions" [value]="option1">{{ option1 }}</option>
       </select>
     </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Цвет кожи</mat-label>
+        <mat-select (selectionChange)="onChangeSafeType($event)">
+          <mat-option value="default" hidden></mat-option>
+          <mat-option *ngFor="let option1 of safeTypeOptions" [value]="option1">{{ option1 }}<mat-divider></mat-divider></mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
     <div class="dropdown-container">
       <label for="dropdown1">Окантовка:</label>
       <select id="dropdown1" [(ngModel)]="safeTypeOptions" (ngModelChange)="onChangeSafeOutline($event)">
@@ -32,7 +43,6 @@
     </div>
   </div>
   <div class="right-panel">
-
     <!-- сама тушка сейфа -->
     <img *ngIf="selectedSafeTypeOption === 'Black'" src="../../assets/img/closed_safe_type/1/base-1.png" alt="Big image" class="base-image">
     <img *ngIf="selectedSafeTypeOption === 'Blue'" src="../../assets/img/closed_safe_type/1/base-2.png" alt="Big image" class="base-image">

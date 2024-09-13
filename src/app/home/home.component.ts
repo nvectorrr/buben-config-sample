@@ -4,7 +4,7 @@ import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
@@ -16,11 +16,11 @@ export class HomeComponent implements OnInit {
   safeFurnitureOptions : string[];
   safeThreadsOptions : string[];
 
-  selectedSafeTypeOption : string;
-  selectedSafeFurnitureOptions : string;
-  selectedSafeOutlineOption : string;
-  selectedSafeVerticalThreadOption : string;
-  selectedSafeHorizontalThreadOption : string;
+  selectedSafeTypeOption? : string;
+  selectedSafeFurnitureOptions? : string;
+  selectedSafeOutlineOption? : string;
+  selectedSafeVerticalThreadOption? : string;
+  selectedSafeHorizontalThreadOption? : string;
 
   constructor(private titleService:Title) {
     this.titleService.setTitle("Configurator");
@@ -31,25 +31,23 @@ export class HomeComponent implements OnInit {
 
     // металлические детали
     this.safeFurnitureOptions = this.safeFurnitureList.map(option => Object.values(option)[0]);
-    this.selectedSafeFurnitureOptions = this.safeFurnitureOptions[0];
+    //this.selectedSafeFurnitureOptions = this.safeFurnitureOptions[0];
 
     // окантовка
-    this.selectedSafeOutlineOption = this.safeTypeOptions[0];
+    //this.selectedSafeOutlineOption = this.safeTypeOptions[0];
 
     // строчка в целом
     this.safeThreadsOptions = this.safeThreadsList.map(option => Object.values(option)[0]);
 
     // вертикальная и горизонтальная
-    this.selectedSafeVerticalThreadOption = this.safeThreadsOptions[0];
-    this.selectedSafeHorizontalThreadOption = this.safeThreadsOptions[0];
+    //this.selectedSafeVerticalThreadOption = this.safeThreadsOptions[0];
+    //this.selectedSafeHorizontalThreadOption = this.safeThreadsOptions[0];
   }
 
   ngOnInit(): void {}
 
-  onChangeSafeType(selection : string) {
-    this.selectedSafeTypeOption = selection;
-
-    this.safeTypeOptions = this.safeTypesList.map(option => Object.values(option)[0]);
+  onChangeSafeType(selection : any) {
+    this.selectedSafeTypeOption = selection.value;
   }
 
   onChangeSafeFurniture(selection : string) {

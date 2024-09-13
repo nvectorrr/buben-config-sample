@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+}
+  
+.left-panel {
+  width: 30%;
+}
+  
+.right-panel {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+  
+.dropdown-container {
+  margin-bottom: 20px;
+}
+  
+.base-image {
+  width: 1024px;
+  height: 1024px;
+  position: absolute;
+}
+
+.child-image {
+  width: 1024px;
+  height: 1024px;
+  position: absolute;
+}
