@@ -1,6 +1,5 @@
 <div class="container">
   <div class="left-panel">
-    <div>
       <mat-form-field appearance="fill">
         <mat-label>Фурнитура:</mat-label>
         <mat-select (selectionChange)="onChangeSafeFurniture($event)">
@@ -8,8 +7,6 @@
           <mat-option *ngFor="let option1 of safeFurnitureOptions" [value]="option1">{{ option1 }}<mat-divider></mat-divider></mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-    <div>
       <mat-form-field appearance="fill">
         <mat-label>Цвет кожи:</mat-label>
         <mat-select (selectionChange)="onChangeSafeType($event)">
@@ -17,8 +14,6 @@
           <mat-option *ngFor="let option1 of safeTypeOptions" [value]="option1">{{ option1 }}<mat-divider></mat-divider></mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-    <div>
       <mat-form-field appearance="fill">
         <mat-label>Окантовка:</mat-label>
         <mat-select (selectionChange)="onChangeSafeOutline($event)">
@@ -26,8 +21,6 @@
           <mat-option *ngFor="let option1 of safeTypeOptions" [value]="option1">{{ option1 }}<mat-divider></mat-divider></mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-    <div>
       <mat-form-field appearance="fill">
         <mat-label>Строчка вертикальная:</mat-label>
         <mat-select (selectionChange)="onChangeSafeVerticalOutline($event)">
@@ -35,8 +28,6 @@
           <mat-option *ngFor="let option1 of safeThreadsOptions" [value]="option1">{{ option1 }}<mat-divider></mat-divider></mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-    <div>
       <mat-form-field appearance="fill">
         <mat-label>Строчка горизонтальня:</mat-label>
         <mat-select (selectionChange)="onChangeSafeHorizontalOutline($event)">
@@ -44,7 +35,7 @@
           <mat-option *ngFor="let option1 of safeThreadsOptions" [value]="option1">{{ option1 }}<mat-divider></mat-divider></mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
+  </div>
   <div class="right-panel">
     <!-- сама тушка сейфа -->
     <img *ngIf="selectedSafeTypeOption === 'Black'" src="../../assets/img/closed_safe_type/1/base-1.png" alt="Big image" class="base-image">
