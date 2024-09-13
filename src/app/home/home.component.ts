@@ -34,14 +34,14 @@ export class HomeComponent implements OnInit {
     //this.selectedSafeFurnitureOptions = this.safeFurnitureOptions[0];
 
     // окантовка
-    //this.selectedSafeOutlineOption = this.safeTypeOptions[0];
+    this.selectedSafeOutlineOption = this.safeTypeOptions[0];
 
     // строчка в целом
     this.safeThreadsOptions = this.safeThreadsList.map(option => Object.values(option)[0]);
 
     // вертикальная и горизонтальная
-    //this.selectedSafeVerticalThreadOption = this.safeThreadsOptions[0];
-    //this.selectedSafeHorizontalThreadOption = this.safeThreadsOptions[0];
+    this.selectedSafeVerticalThreadOption = this.safeThreadsOptions[0];
+    this.selectedSafeHorizontalThreadOption = this.safeThreadsOptions[0];
   }
 
   ngOnInit(): void {}
@@ -50,27 +50,19 @@ export class HomeComponent implements OnInit {
     this.selectedSafeTypeOption = selection.value;
   }
 
-  onChangeSafeFurniture(selection : string) {
-    this.selectedSafeFurnitureOptions = selection;
-
-    this.safeFurnitureOptions = this.safeFurnitureOptions = this.safeFurnitureList.map(option => Object.values(option)[0]);
+  onChangeSafeFurniture(selection : any) {
+    this.selectedSafeFurnitureOptions = selection.value;
   }
 
-  onChangeSafeOutline(selection : string) {
-    this.selectedSafeOutlineOption = selection;
-
-    this.safeTypeOptions = this.safeTypesList.map(option => Object.values(option)[0]);
+  onChangeSafeOutline(selection : any) {
+    this.selectedSafeOutlineOption = selection.value;
   }
 
-  onChangeSafeVerticalOutline(selected : string) {
-    this.selectedSafeVerticalThreadOption = selected;
-
-    this.safeThreadsOptions = this.safeThreadsList.map(option => Object.values(option)[0]);
+  onChangeSafeVerticalOutline(selected : any) {
+    this.selectedSafeVerticalThreadOption = selected.value;
   }
 
-  onChangeSafeHorizontalOutline(selected : string) {
-    this.selectedSafeHorizontalThreadOption = selected;
-
-    this.safeThreadsOptions = this.safeThreadsList.map(option => Object.values(option)[0]);
+  onChangeSafeHorizontalOutline(selected : any) {
+    this.selectedSafeHorizontalThreadOption = selected.value;
   }
 }
