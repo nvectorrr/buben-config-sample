@@ -11,7 +11,7 @@
 
 /* Хедер */
 .app-header {
-  background-color: #ff5722; /* Оранжевый цвет */
+  background-color: #f4a460; /* Оранжевый цвет */
   padding: 20px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -25,7 +25,7 @@
 
 /* Футер */
 .app-footer {
-  background-color: #ff5722; /* Оранжевый цвет */
+  background-color: #f4a460; /* Оранжевый цвет */
   padding: 10px;
   text-align: center;
   margin-top: auto;
@@ -125,10 +125,7 @@
       padding-top: 100%; /* Создает квадратное соотношение сторон */
     }
 
-    /* Временный фон для отладки на узких экранах */
-    @media (max-width: 1200px) {
-      background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный белый для отладки */
-    }
+    /* Удалили временный фон для отладки */
   }
 
   @media (max-width: 1200px) {
@@ -176,7 +173,6 @@
 
 /* Убедимся, что изображение видны */
 .image-container img {
-  /* Ensure images are visible */
   display: block;
 }
 
