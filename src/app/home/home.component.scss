@@ -43,6 +43,11 @@
   flex: 1;
   padding: 20px;
   background-color: #1e1e1e; /* Немного светлее черный фон */
+  flex-direction: row; /* По умолчанию в ряд */
+
+  @media (max-width: 1200px) {
+    flex-direction: column; /* На маленьких экранах по колонке */
+  }
 }
 
 /* Левая панель с формами */
@@ -52,6 +57,7 @@
   background-color: #2c2c2c; /* Темный фон для панели */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  order: 2; /* По умолчанию после правой панели */
 
   .dropdown-container {
     margin-bottom: 20px;
@@ -83,6 +89,12 @@
       margin-bottom: 8px;
     }
   }
+
+  @media (max-width: 1200px) {
+    width: 100%;
+    order: 2; /* Сохраняем порядок как второй */
+    margin-top: 20px; /* Добавляем отступ сверху */
+  }
 }
 
 /* Правая панель с изображениями */
@@ -92,19 +104,39 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: #1e1e1e;
+  background-color: transparent; /* Убираем черный фон */
   border-radius: 8px;
   margin-left: 20px;
   overflow: hidden; /* Убирает любые выступающие части изображений */
-}
+  order: 1; /* По умолчанию первая */
 
-/* Контейнер для изображений */
-.image-container {
-  position: relative;
-  width: 800px; /* Увеличенный размер */
-  height: 800px; /* Увеличенный размер */
-  margin: 0;
-  padding: 0;
+  .image-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Максимальная ширина */
+    aspect-ratio: 1 / 1; /* Квадратное соотношение сторон */
+    margin: 0;
+    padding: 0;
+    background-color: transparent; /* Убираем фон */
+
+    /* Резервный вариант для браузеров, не поддерживающих aspect-ratio */
+    @supports not (aspect-ratio: 1 / 1) {
+      height: 0;
+      padding-top: 100%; /* Создает квадратное соотношение сторон */
+    }
+
+    /* Временный фон для отладки на узких экранах */
+    @media (max-width: 1200px) {
+      background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный белый для отладки */
+    }
+  }
+
+  @media (max-width: 1200px) {
+    width: 100%;
+    margin-left: 0;
+    order: 1; /* Сохраняем порядок как первый */
+    margin-bottom: 20px; /* Добавляем отступ снизу для отделения от селекторов */
+  }
 }
 
 /* Базовое изображение */
@@ -118,6 +150,7 @@
   border: none;
   padding: 0;
   margin: 0;
+  z-index: 1; /* Базовое изображение ниже дочерних */
 }
 
 /* Дочерние изображения */
@@ -141,28 +174,20 @@
   display: block;
 }
 
-/* Адаптивность */
-@media (max-width: 1200px) {
-  .container {
-    flex-direction: column;
-  }
+/* Убедимся, что изображение видны */
+.image-container img {
+  /* Ensure images are visible */
+  display: block;
+}
 
-  .left-panel, .right-panel {
-    width: 100%;
-    margin: 0;
-  }
+/* Убедимся, что правые панели не скрыты */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+}
 
-  .right-panel {
-    margin-top: 20px;
-  }
-
-  .image-container {
-    width: 100%;
-    height: auto;
-  }
-
-  .base-image, .child-image {
-    width: 100%;
-    height: auto;
-  }
+/* Ensure no opacity is set to 0 */
+.child-image,
+.base-image {
+  opacity: 1;
 }
