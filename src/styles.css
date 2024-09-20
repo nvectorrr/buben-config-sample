@@ -1,2 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/* styles.scss */
+
+/* Устанавливаем box-sizing для всех элементов */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Убираем стандартные отступы и поля у body и html */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #121212; /* Темный фон для всей страницы */
+}
+
+/* Убираем белые рамки вокруг изображений */
+img {
+  display: block;
+  border: none;
+  padding: 0;
+  margin: 0;
+}

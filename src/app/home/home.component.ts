@@ -1,5 +1,7 @@
+// home.component.ts
 import { Component, OnInit } from '@angular/core';
-import {Title} from "@angular/platform-browser";
+import { Title } from '@angular/platform-browser';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-home',
@@ -8,61 +10,71 @@ import {Title} from "@angular/platform-browser";
 })
 export class HomeComponent implements OnInit {
 
-  safeTypesList = [{1 : 'Black'}, {2 : 'Blue'}, {3 : 'Brown'}, {4 : 'Cherry Red'}, {5 : 'Cream'}, {6 : 'Frozen Blue'}, {7 : 'Grey'}, {8 : 'Havanna Brown'}, {9 : 'Honey Yellow'}, {10 : 'Jungle Green'}, {11 : 'Lagoon Blue'}, {12 : 'Lava Orange'}, {13 : 'Lemon Yellow'}, {14 : 'Lizzard Green'}, {15 : 'Maple Green'}, {16 : 'Mint Ice'}, {17 : 'Ocean Blue'}, {18 : 'Pebble Grey'}, {19 : 'White'}];
-  safeFurnitureList = [{1 : 'Bronze'}, {2 : 'Classic'}, {3 : 'Gold'}, {4 : 'Graphite'}, {5 : 'Grey'}];
-  safeThreadsList = [{1 : 'Black'}, {2 : 'Brown'}, {3 : 'Red'}, {4 : 'White'}];
+  // Списки опций
+  safeTypesList: string[] = [
+    'Black', 'Blue', 'Brown', 'Cherry Red', 'Cream', 'Frozen Blue',
+    'Grey', 'Havanna Brown', 'Honey Yellow', 'Jungle Green', 'Lagoon Blue',
+    'Lava Orange', 'Lemon Yellow', 'Lizzard Green', 'Maple Green', 'Mint Ice',
+    'Ocean Blue', 'Pebble Grey', 'White'
+  ];
 
-  safeTypeOptions : string[];
-  safeFurnitureOptions : string[];
-  safeThreadsOptions : string[];
+  safeFurnitureList: string[] = [
+    'Bronze', 'Classic', 'Gold', 'Graphite', 'Grey'
+  ];
 
-  selectedSafeTypeOption? : string;
-  selectedSafeFurnitureOptions? : string;
-  selectedSafeOutlineOption? : string;
-  selectedSafeVerticalThreadOption? : string;
-  selectedSafeHorizontalThreadOption? : string;
+  safeThreadsList: string[] = [
+    'Black', 'Brown', 'Red', 'White'
+  ];
 
-  constructor(private titleService:Title) {
-    this.titleService.setTitle("Configurator");
+  // Опции для шаблона
+  safeTypeOptions: string[];
+  safeFurnitureOptions: string[];
+  safeThreadsOptions: string[];
 
-    // сам корпус сейфа
-    this.safeTypeOptions = this.safeTypesList.map(option => Object.values(option)[0]);
-    this.selectedSafeTypeOption = this.safeTypeOptions[0];
+  // Выбранные опции
+  selectedSafeTypeOption?: string;
+  selectedSafeFurnitureOptions?: string;
+  selectedSafeOutlineOption?: string;
+  selectedSafeVerticalThreadOption?: string;
+  selectedSafeHorizontalThreadOption?: string;
 
-    // металлические детали
-    this.safeFurnitureOptions = this.safeFurnitureList.map(option => Object.values(option)[0]);
-    //this.selectedSafeFurnitureOptions = this.safeFurnitureOptions[0];
+  constructor(private titleService: Title) {
+    this.titleService.setTitle("Конфигуратор Сейфа");
 
-    // окантовка
-    this.selectedSafeOutlineOption = this.safeTypeOptions[0];
+    // Инициализация опций
+    this.safeTypeOptions = [...this.safeTypesList];
+    this.selectedSafeTypeOption = 'Black'; // Установите значение по умолчанию
 
-    // строчка в целом
-    this.safeThreadsOptions = this.safeThreadsList.map(option => Object.values(option)[0]);
+    this.safeFurnitureOptions = [...this.safeFurnitureList];
+    this.selectedSafeFurnitureOptions = 'Bronze'; // Установите значение по умолчанию
 
-    // вертикальная и горизонтальная
-    this.selectedSafeVerticalThreadOption = this.safeThreadsOptions[0];
-    this.selectedSafeHorizontalThreadOption = this.safeThreadsOptions[0];
+    this.selectedSafeOutlineOption = 'Black'; // Установите значение по умолчанию
+
+    this.safeThreadsOptions = [...this.safeThreadsList];
+    this.selectedSafeVerticalThreadOption = 'Black'; // Установите значение по умолчанию
+    this.selectedSafeHorizontalThreadOption = 'Black'; // Установите значение по умолчанию
   }
 
   ngOnInit(): void {}
 
-  onChangeSafeType(selection : any) {
+  // Обработчики изменений
+  onChangeSafeType(selection: MatSelectChange) {
     this.selectedSafeTypeOption = selection.value;
   }
 
-  onChangeSafeFurniture(selection : any) {
+  onChangeSafeFurniture(selection: MatSelectChange) {
     this.selectedSafeFurnitureOptions = selection.value;
   }
 
-  onChangeSafeOutline(selection : any) {
+  onChangeSafeOutline(selection: MatSelectChange) {
     this.selectedSafeOutlineOption = selection.value;
   }
 
-  onChangeSafeVerticalOutline(selected : any) {
-    this.selectedSafeVerticalThreadOption = selected.value;
+  onChangeSafeVerticalOutline(selection: MatSelectChange) {
+    this.selectedSafeVerticalThreadOption = selection.value;
   }
 
-  onChangeSafeHorizontalOutline(selected : any) {
-    this.selectedSafeHorizontalThreadOption = selected.value;
+  onChangeSafeHorizontalOutline(selection: MatSelectChange) {
+    this.selectedSafeHorizontalThreadOption = selection.value;
   }
 }

@@ -1,0 +1,9 @@
+/* app.component.scss */
+
+/* Убедитесь, что нет лишних отступов или полей */
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
