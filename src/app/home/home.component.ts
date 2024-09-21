@@ -1,7 +1,7 @@
-// home.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { MatSelectChange } from '@angular/material/select';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { SAFE_TYPES, SAFE_FURNITURES, SAFE_THREADS, SafeOption } from './safe-config.constants';
 
 @Component({
   selector: 'app-home',
@@ -9,72 +9,78 @@ import { MatSelectChange } from '@angular/material/select';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  // Константы опций
+  safeTypes: SafeOption[] = SAFE_TYPES;
+  safeFurnitures: SafeOption[] = SAFE_FURNITURES;
+  safeThreads: SafeOption[] = SAFE_THREADS;
 
-  // Списки опций
-  safeTypesList: string[] = [
-    'Black', 'Blue', 'Brown', 'Cherry Red', 'Cream', 'Frozen Blue',
-    'Grey', 'Havanna Brown', 'Honey Yellow', 'Jungle Green', 'Lagoon Blue',
-    'Lava Orange', 'Lemon Yellow', 'Lizzard Green', 'Maple Green', 'Mint Ice',
-    'Ocean Blue', 'Pebble Grey', 'White'
-  ];
+  // Reactive Form
+  safeForm: FormGroup;
 
-  safeFurnitureList: string[] = [
-    'Bronze', 'Classic', 'Gold', 'Graphite', 'Grey'
-  ];
+  // Карта для путей к изображениям
+  imagePaths: { [key: string]: string } = {
+    base: '',
+    furniture: '',
+    outline: '',
+    threadVertical: '',
+    threadHorizontal: '',
+  };
 
-  safeThreadsList: string[] = [
-    'Black', 'Brown', 'Red', 'White'
-  ];
+  // Маппинги для изображений
+  private baseImageMap: { [key: string]: string } = {};
+  private furnitureImageMap: { [key: string]: string } = {};
+  private outlineImageMap: { [key: string]: string } = {};
+  private threadVerticalImageMap: { [key: string]: string } = {};
+  private threadHorizontalImageMap: { [key: string]: string } = {};
 
-  // Опции для шаблона
-  safeTypeOptions: string[];
-  safeFurnitureOptions: string[];
-  safeThreadsOptions: string[];
-
-  // Выбранные опции
-  selectedSafeTypeOption?: string;
-  selectedSafeFurnitureOptions?: string;
-  selectedSafeOutlineOption?: string;
-  selectedSafeVerticalThreadOption?: string;
-  selectedSafeHorizontalThreadOption?: string;
-
-  constructor(private titleService: Title) {
+  constructor(
+    private titleService: Title,
+    private fb: FormBuilder
+  ) {
     this.titleService.setTitle("Конфигуратор Сейфа");
 
-    // Инициализация опций
-    this.safeTypeOptions = [...this.safeTypesList];
-    this.selectedSafeTypeOption = 'Black'; // Установите значение по умолчанию
+    // Инициализация маппингов (можно вынести в константы при необходимости)
+    this.safeTypes.forEach((option, index) => {
+      this.baseImageMap[option.value] = `../../assets/img/closed_safe_type/1/base-${index + 1}.png`;
+      this.outlineImageMap[option.value] = `../../assets/img/closed_safe_type/3/outline-${index + 1}.png`;
+    });
 
-    this.safeFurnitureOptions = [...this.safeFurnitureList];
-    this.selectedSafeFurnitureOptions = 'Bronze'; // Установите значение по умолчанию
+    this.safeFurnitures.forEach((option, index) => {
+      this.furnitureImageMap[option.value] = `../../assets/img/closed_safe_type/2/furnite-${index + 1}.png`;
+    });
 
-    this.selectedSafeOutlineOption = 'Black'; // Установите значение по умолчанию
+    this.safeThreads.forEach((option, index) => {
+      this.threadVerticalImageMap[option.value] = `../../assets/img/closed_safe_type/4/thread-vertical-${index + 1}.png`;
+      this.threadHorizontalImageMap[option.value] = `../../assets/img/closed_safe_type/5/thread-horizontal-${index + 1}.png`;
+    });
 
-    this.safeThreadsOptions = [...this.safeThreadsList];
-    this.selectedSafeVerticalThreadOption = 'Black'; // Установите значение по умолчанию
-    this.selectedSafeHorizontalThreadOption = 'Black'; // Установите значение по умолчанию
+    // Инициализация формы
+    this.safeForm = this.fb.group({
+      safeType: ['Black'],
+      safeFurniture: ['Bronze'],
+      safeOutline: ['Black'],
+      threadVertical: ['Black'],
+      threadHorizontal: ['Black'],
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.updateImagePaths();
 
-  // Обработчики изменений
-  onChangeSafeType(selection: MatSelectChange) {
-    this.selectedSafeTypeOption = selection.value;
+    // Подписка на изменения формы
+    this.safeForm.valueChanges.subscribe(() => {
+      this.updateImagePaths();
+    });
   }
 
-  onChangeSafeFurniture(selection: MatSelectChange) {
-    this.selectedSafeFurnitureOptions = selection.value;
-  }
+  // Метод для обновления путей к изображениям
+  private updateImagePaths(): void {
+    const { safeType, safeFurniture, safeOutline, threadVertical, threadHorizontal } = this.safeForm.value;
 
-  onChangeSafeOutline(selection: MatSelectChange) {
-    this.selectedSafeOutlineOption = selection.value;
-  }
-
-  onChangeSafeVerticalOutline(selection: MatSelectChange) {
-    this.selectedSafeVerticalThreadOption = selection.value;
-  }
-
-  onChangeSafeHorizontalOutline(selection: MatSelectChange) {
-    this.selectedSafeHorizontalThreadOption = selection.value;
+    this.imagePaths.base = this.baseImageMap[safeType] || `../../assets/img/closed_safe_type/1/base-default.png`;
+    this.imagePaths.furniture = this.furnitureImageMap[safeFurniture] || '';
+    this.imagePaths.outline = this.outlineImageMap[safeOutline] || '';
+    this.imagePaths.threadVertical = this.threadVerticalImageMap[threadVertical] || '';
+    this.imagePaths.threadHorizontal = this.threadHorizontalImageMap[threadHorizontal] || '';
   }
 }
