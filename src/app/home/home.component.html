@@ -8,148 +8,76 @@
   <!-- Основной контент -->
   <div class="container">
     <div class="left-panel">
-      <mat-form-field appearance="fill" class="dropdown-container">
-        <mat-label>Фурнитура:</mat-label>
-        <mat-select (selectionChange)="onChangeSafeFurniture($event)">
-          <mat-option value="default" hidden></mat-option>
-          <mat-option *ngFor="let option1 of safeFurnitureOptions" [value]="option1">
-            {{ option1 }}
-            <mat-divider></mat-divider>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <form [formGroup]="safeForm">
+        <!-- Фурнитура -->
+        <mat-form-field appearance="fill" class="dropdown-container">
+          <mat-label>Фурнитура</mat-label>
+          <mat-select formControlName="safeFurniture" aria-label="Выбор фурнитуры">
+            <mat-option *ngFor="let option of safeFurnitures" [value]="option.value">
+              {{ option.display }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field appearance="fill" class="dropdown-container">
-        <mat-label>Цвет кожи:</mat-label>
-        <mat-select (selectionChange)="onChangeSafeType($event)">
-          <mat-option value="default" hidden></mat-option>
-          <mat-option *ngFor="let option1 of safeTypeOptions" [value]="option1">
-            {{ option1 }}
-            <mat-divider></mat-divider>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <!-- Цвет кожи -->
+        <mat-form-field appearance="fill" class="dropdown-container">
+          <mat-label>Цвет кожи</mat-label>
+          <mat-select formControlName="safeType" aria-label="Выбор цвета кожи">
+            <mat-option *ngFor="let option of safeTypes" [value]="option.value">
+              {{ option.display }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field appearance="fill" class="dropdown-container">
-        <mat-label>Окантовка:</mat-label>
-        <mat-select (selectionChange)="onChangeSafeOutline($event)">
-          <mat-option value="default" hidden></mat-option>
-          <mat-option *ngFor="let option1 of safeTypeOptions" [value]="option1">
-            {{ option1 }}
-            <mat-divider></mat-divider>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <!-- Окантовка -->
+        <mat-form-field appearance="fill" class="dropdown-container">
+          <mat-label>Окантовка</mat-label>
+          <mat-select formControlName="safeOutline" aria-label="Выбор окантовки">
+            <mat-option *ngFor="let option of safeTypes" [value]="option.value">
+              {{ option.display }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field appearance="fill" class="dropdown-container">
-        <mat-label>Строчка вертикальная:</mat-label>
-        <mat-select (selectionChange)="onChangeSafeVerticalOutline($event)">
-          <mat-option value="default" hidden></mat-option>
-          <mat-option *ngFor="let option1 of safeThreadsOptions" [value]="option1">
-            {{ option1 }}
-            <mat-divider></mat-divider>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <!-- Строчка вертикальная -->
+        <mat-form-field appearance="fill" class="dropdown-container">
+          <mat-label>Строчка вертикальная</mat-label>
+          <mat-select formControlName="threadVertical" aria-label="Выбор вертикальной строчки">
+            <mat-option *ngFor="let option of safeThreads" [value]="option.value">
+              {{ option.display }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field appearance="fill" class="dropdown-container">
-        <mat-label>Строчка горизонтальная:</mat-label>
-        <mat-select (selectionChange)="onChangeSafeHorizontalOutline($event)">
-          <mat-option value="default" hidden></mat-option>
-          <mat-option *ngFor="let option1 of safeThreadsOptions" [value]="option1">
-            {{ option1 }}
-            <mat-divider></mat-divider>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <!-- Строчка горизонтальная -->
+        <mat-form-field appearance="fill" class="dropdown-container">
+          <mat-label>Строчка горизонтальная</mat-label>
+          <mat-select formControlName="threadHorizontal" aria-label="Выбор горизонтальной строчки">
+            <mat-option *ngFor="let option of safeThreads" [value]="option.value">
+              {{ option.display }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
     </div>
 
     <div class="right-panel">
       <!-- Наложение изображений с общим центром -->
       <div class="image-container">
-        <!-- Корпус сейфа -->
-        <ng-container [ngSwitch]="selectedSafeTypeOption">
-          <img *ngSwitchCase="'Black'" src="../../assets/img/closed_safe_type/1/base-1.png" alt="Black" class="base-image">
-          <img *ngSwitchCase="'Blue'" src="../../assets/img/closed_safe_type/1/base-2.png" alt="Blue" class="base-image">
-          <img *ngSwitchCase="'Brown'" src="../../assets/img/closed_safe_type/1/base-3.png" alt="Brown" class="base-image">
-          <img *ngSwitchCase="'Cherry Red'" src="../../assets/img/closed_safe_type/1/base-4.png" alt="Cherry Red" class="base-image">
-          <img *ngSwitchCase="'Cream'" src="../../assets/img/closed_safe_type/1/base-5.png" alt="Cream" class="base-image">
-          <img *ngSwitchCase="'Frozen Blue'" src="../../assets/img/closed_safe_type/1/base-6.png" alt="Frozen Blue" class="base-image">
-          <img *ngSwitchCase="'Grey'" src="../../assets/img/closed_safe_type/1/base-7.png" alt="Grey" class="base-image">
-          <img *ngSwitchCase="'Havanna Brown'" src="../../assets/img/closed_safe_type/1/base-8.png" alt="Havanna Brown" class="base-image">
-          <img *ngSwitchCase="'Honey Yellow'" src="../../assets/img/closed_safe_type/1/base-9.png" alt="Honey Yellow" class="base-image">
-          <img *ngSwitchCase="'Jungle Green'" src="../../assets/img/closed_safe_type/1/base-10.png" alt="Jungle Green" class="base-image">
-          <img *ngSwitchCase="'Lagoon Blue'" src="../../assets/img/closed_safe_type/1/base-11.png" alt="Lagoon Blue" class="base-image">
-          <img *ngSwitchCase="'Lava Orange'" src="../../assets/img/closed_safe_type/1/base-12.png" alt="Lava Orange" class="base-image">
-          <img *ngSwitchCase="'Lemon Yellow'" src="../../assets/img/closed_safe_type/1/base-13.png" alt="Lemon Yellow" class="base-image">
-          <img *ngSwitchCase="'Lizzard Green'" src="../../assets/img/closed_safe_type/1/base-14.png" alt="Lizzard Green" class="base-image">
-          <img *ngSwitchCase="'Maple Green'" src="../../assets/img/closed_safe_type/1/base-15.png" alt="Maple Green" class="base-image">
-          <img *ngSwitchCase="'Mint Ice'" src="../../assets/img/closed_safe_type/1/base-16.png" alt="Mint Ice" class="base-image">
-          <img *ngSwitchCase="'Ocean Blue'" src="../../assets/img/closed_safe_type/1/base-17.png" alt="Ocean Blue" class="base-image">
-          <img *ngSwitchCase="'Pebble Grey'" src="../../assets/img/closed_safe_type/1/base-18.png" alt="Pebble Grey" class="base-image">
-          <img *ngSwitchCase="'White'" src="../../assets/img/closed_safe_type/1/base-19.png" alt="White" class="base-image">
-          <img *ngSwitchDefault src="../../assets/img/closed_safe_type/1/base-default.png" alt="Default" class="base-image">
-        </ng-container>
+        <!-- Базовое изображение -->
+        <img [src]="imagePaths.base" [alt]="safeForm.value.safeType || 'Default Base'" class="base-image" />
 
-        <!-- Металлические части -->
-        <ng-container [ngSwitch]="selectedSafeFurnitureOptions">
-          <img *ngSwitchCase="'Bronze'" src="../../assets/img/closed_safe_type/2/furnite-1.png" alt="Bronze" class="child-image">
-          <img *ngSwitchCase="'Classic'" src="../../assets/img/closed_safe_type/2/furnite-2.png" alt="Classic" class="child-image">
-          <img *ngSwitchCase="'Gold'" src="../../assets/img/closed_safe_type/2/furnite-3.png" alt="Gold" class="child-image">
-          <img *ngSwitchCase="'Graphite'" src="../../assets/img/closed_safe_type/2/furnite-4.png" alt="Graphite" class="child-image">
-          <img *ngSwitchCase="'Grey'" src="../../assets/img/closed_safe_type/2/furnite-5.png" alt="Grey" class="child-image">
-          <ng-container *ngSwitchDefault>
-            <!-- Если не выбрано, можно оставить пустым или добавить другое изображение -->
-          </ng-container>
-        </ng-container>
+        <!-- Фурнитура -->
+        <img *ngIf="imagePaths.furniture" [src]="imagePaths.furniture" [alt]="safeForm.value.safeFurniture || 'Default Furniture'" class="child-image" />
 
         <!-- Окантовка -->
-        <ng-container [ngSwitch]="selectedSafeOutlineOption">
-          <img *ngSwitchCase="'Black'" src="../../assets/img/closed_safe_type/3/outline-1.png" alt="Black Outline" class="child-image">
-          <img *ngSwitchCase="'Blue'" src="../../assets/img/closed_safe_type/3/outline-2.png" alt="Blue Outline" class="child-image">
-          <img *ngSwitchCase="'Brown'" src="../../assets/img/closed_safe_type/3/outline-3.png" alt="Brown Outline" class="child-image">
-          <img *ngSwitchCase="'Cherry Red'" src="../../assets/img/closed_safe_type/3/outline-4.png" alt="Cherry Red Outline" class="child-image">
-          <img *ngSwitchCase="'Cream'" src="../../assets/img/closed_safe_type/3/outline-5.png" alt="Cream Outline" class="child-image">
-          <img *ngSwitchCase="'Frozen Blue'" src="../../assets/img/closed_safe_type/3/outline-6.png" alt="Frozen Blue Outline" class="child-image">
-          <img *ngSwitchCase="'Grey'" src="../../assets/img/closed_safe_type/3/outline-7.png" alt="Grey Outline" class="child-image">
-          <img *ngSwitchCase="'Havanna Brown'" src="../../assets/img/closed_safe_type/3/outline-8.png" alt="Havanna Brown Outline" class="child-image">
-          <img *ngSwitchCase="'Honey Yellow'" src="../../assets/img/closed_safe_type/3/outline-9.png" alt="Honey Yellow Outline" class="child-image">
-          <img *ngSwitchCase="'Jungle Green'" src="../../assets/img/closed_safe_type/3/outline-10.png" alt="Jungle Green Outline" class="child-image">
-          <img *ngSwitchCase="'Lagoon Blue'" src="../../assets/img/closed_safe_type/3/outline-11.png" alt="Lagoon Blue Outline" class="child-image">
-          <img *ngSwitchCase="'Lava Orange'" src="../../assets/img/closed_safe_type/3/outline-12.png" alt="Lava Orange Outline" class="child-image">
-          <img *ngSwitchCase="'Lemon Yellow'" src="../../assets/img/closed_safe_type/3/outline-13.png" alt="Lemon Yellow Outline" class="child-image">
-          <img *ngSwitchCase="'Lizzard Green'" src="../../assets/img/closed_safe_type/3/outline-14.png" alt="Lizzard Green Outline" class="child-image">
-          <img *ngSwitchCase="'Maple Green'" src="../../assets/img/closed_safe_type/3/outline-15.png" alt="Maple Green Outline" class="child-image">
-          <img *ngSwitchCase="'Mint Ice'" src="../../assets/img/closed_safe_type/3/outline-16.png" alt="Mint Ice Outline" class="child-image">
-          <img *ngSwitchCase="'Ocean Blue'" src="../../assets/img/closed_safe_type/3/outline-17.png" alt="Ocean Blue Outline" class="child-image">
-          <img *ngSwitchCase="'Pebble Grey'" src="../../assets/img/closed_safe_type/3/outline-18.png" alt="Pebble Grey Outline" class="child-image">
-          <img *ngSwitchCase="'White'" src="../../assets/img/closed_safe_type/3/outline-19.png" alt="White Outline" class="child-image">
-          <ng-container *ngSwitchDefault>
-            <!-- Если не выбрано, можно оставить пустым или добавить другое изображение -->
-          </ng-container>
-        </ng-container>
+        <img *ngIf="imagePaths.outline" [src]="imagePaths.outline" [alt]="safeForm.value.safeOutline + ' Outline' || 'Default Outline'" class="child-image" />
 
         <!-- Строчка вертикальная -->
-        <ng-container [ngSwitch]="selectedSafeVerticalThreadOption">
-          <img *ngSwitchCase="'Black'" src="../../assets/img/closed_safe_type/4/thread-vertical-1.png" alt="Black Vertical Thread" class="child-image">
-          <img *ngSwitchCase="'Brown'" src="../../assets/img/closed_safe_type/4/thread-vertical-2.png" alt="Brown Vertical Thread" class="child-image">
-          <img *ngSwitchCase="'Red'" src="../../assets/img/closed_safe_type/4/thread-vertical-3.png" alt="Red Vertical Thread" class="child-image">
-          <img *ngSwitchCase="'White'" src="../../assets/img/closed_safe_type/4/thread-vertical-4.png" alt="White Vertical Thread" class="child-image">
-          <ng-container *ngSwitchDefault>
-            <!-- Если не выбрано, можно оставить пустым или добавить другое изображение -->
-          </ng-container>
-        </ng-container>
+        <img *ngIf="imagePaths.threadVertical" [src]="imagePaths.threadVertical" [alt]="safeForm.value.threadVertical + ' Vertical Thread' || 'Default Vertical Thread'" class="child-image" />
 
         <!-- Строчка горизонтальная -->
-        <ng-container [ngSwitch]="selectedSafeHorizontalThreadOption">
-          <img *ngSwitchCase="'Black'" src="../../assets/img/closed_safe_type/5/thread-horizontal-1.png" alt="Black Horizontal Thread" class="child-image">
-          <img *ngSwitchCase="'Brown'" src="../../assets/img/closed_safe_type/5/thread-horizontal-2.png" alt="Brown Horizontal Thread" class="child-image">
-          <img *ngSwitchCase="'Red'" src="../../assets/img/closed_safe_type/5/thread-horizontal-3.png" alt="Red Horizontal Thread" class="child-image">
-          <img *ngSwitchCase="'White'" src="../../assets/img/closed_safe_type/5/thread-horizontal-4.png" alt="White Horizontal Thread" class="child-image">
-          <ng-container *ngSwitchDefault>
-            <!-- Если не выбрано, можно оставить пустым или добавить другое изображение -->
-          </ng-container>
-        </ng-container>
+        <img *ngIf="imagePaths.threadHorizontal" [src]="imagePaths.threadHorizontal" [alt]="safeForm.value.threadHorizontal + ' Horizontal Thread' || 'Default Horizontal Thread'" class="child-image" />
       </div>
     </div>
   </div>

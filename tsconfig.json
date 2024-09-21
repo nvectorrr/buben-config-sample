@@ -28,6 +28,7 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
+    "noPropertyAccessFromIndexSignature": false,
     "_enabledBlockTypes": ["if","for","switch","defer"]
   }
 }
