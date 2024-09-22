@@ -26,3 +26,73 @@ img {
   padding: 0;
   margin: 0;
 }
+
+
+/* стилизация выпадающих списков */
+
+  .mat-form-field-appearance-fill .mat-form-field-underline .mat-form-field-ripple {
+    background-color: #e6b284 !important; /* Замените на ваш цвет */
+  }
+
+  /* Переопределение цвета метки */
+  .mat-form-field-appearance-fill .mat-form-field-label {
+    color: #464646 !important; /* Замените на ваш цвет */
+  }
+
+
+  /* Стилизация выпадающего списка*/
+  .mat-option {
+   background-color: #e6b284 !important; /* фон */
+    color: #464646 !important; /* буквы */
+  }
+
+  .mat-option:hover {
+    background-color: #d5a172 !important; /* цвет при наведении в выпадающем списке */
+  }
+
+  .mat-option.mat-selected:not(.mat-option-disabled) {
+   background-color: #d5a172 !important; /* цвет выделенного в выпадающем списке */
+  }
+
+  /* Стилизация стрелки выпадающего списка */
+  .mat-select-arrow {
+    color: #464646 !important; /* Замените на ваш цвет */
+  }
+
+  /* Удаление белого фона mat-form-field */
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+   background-color: transparent !important;
+  }
+
+  /* Настройка внешнего вида mat-form-field при фокусе */
+  .mat-form-field-appearance-fill.mat-focused .mat-form-field-flex {
+    background-color: #d5a172 !important;
+  }
+
+
+/* Стилизация полосы прокрутки для выпадающего списка mat-select */
+
+.mat-select-panel::-webkit-scrollbar {
+  width: 12px; /* Ширина полосы прокрутки */
+}
+
+.mat-select-panel::-webkit-scrollbar-track {
+  background: #e6b284; /* Цвет фона дорожки */
+}
+
+.mat-select-panel::-webkit-scrollbar-thumb {
+  background-color: 464646; /* Цвет бегунка */
+  border-radius: 10px; /* Радиус скругления бегунка */
+  border: 3px solid #e6b284; /* Отступ между бегунком и дорожкой */
+}
+
+.mat-select-panel::-webkit-scrollbar-thumb:hover {
+  background-color: 464646; /* Цвет бегунка при наведении */
+}
+
+/* Для браузеров, поддерживающих стандартные свойства CSS для полосы прокрутки */
+
+.mat-select-panel {
+  scrollbar-color: #464646 #e6b284; /* Цвет бегунка и дорожки */
+  scrollbar-width: normal; /* Толщина полосы прокрутки */
+}

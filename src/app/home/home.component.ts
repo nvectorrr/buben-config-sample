@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+// home.component.ts
+
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SAFE_TYPES, SAFE_FURNITURES, SAFE_THREADS, SafeOption } from './safe-config.constants';
@@ -7,6 +9,7 @@ import { SAFE_TYPES, SAFE_FURNITURES, SAFE_THREADS, SafeOption } from './safe-co
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
   // Константы опций
@@ -77,10 +80,10 @@ export class HomeComponent implements OnInit {
   private updateImagePaths(): void {
     const { safeType, safeFurniture, safeOutline, threadVertical, threadHorizontal } = this.safeForm.value;
 
-    this.imagePaths['base'] = this.baseImageMap[safeType] || `../../assets/img/closed_safe_type/1/base-default.png`;
-    this.imagePaths['furniture'] = this.furnitureImageMap[safeFurniture] || '';
-    this.imagePaths['outline'] = this.outlineImageMap[safeOutline] || '';
-    this.imagePaths['threadVertical'] = this.threadVerticalImageMap[threadVertical] || '';
-    this.imagePaths['threadHorizontal'] = this.threadHorizontalImageMap[threadHorizontal] || '';
+    this.imagePaths.base = this.baseImageMap[safeType] || `../../assets/img/closed_safe_type/1/base-default.png`;
+    this.imagePaths.furniture = this.furnitureImageMap[safeFurniture] || '';
+    this.imagePaths.outline = this.outlineImageMap[safeOutline] || '';
+    this.imagePaths.threadVertical = this.threadVerticalImageMap[threadVertical] || '';
+    this.imagePaths.threadHorizontal = this.threadHorizontalImageMap[threadHorizontal] || '';
   }
 }

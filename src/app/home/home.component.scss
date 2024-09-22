@@ -1,15 +1,15 @@
 // Переменные
-$primary-color: #f4a460;
+$primary-color: #e6b284;
 $background-color: #1e1e1e;
-$panel-background-color: #2c2c2c;
-$text-color: #ffffff;
-$dropdown-bg-color: #ffffff;
+$panel-background-color: #e6b284;
+$text-color: #464646;
+$dropdown-bg-color: #ff0000;
 $dropdown-text-color: #000000;
-$dropdown-hover-bg-color: #ffe0b2;
+$dropdown-hover-bg-color: lighten($dropdown-bg-color, 10%);
 $header-footer-padding: 20px;
 $border-radius: 8px;
-$box-shadow-header: 0 4px 6px rgba(0, 0, 0, 0.1);
-$box-shadow-panel: 0 2px 4px rgba(0, 0, 0, 0.5);
+$box-shadow-header: 0 4px 8px rgba(0, 0, 0, 0.5);
+$box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
 
 // Миксин для общих стилей изображений
 @mixin image-style($z-index: 1, $transition: none) {
@@ -34,17 +34,37 @@ $box-shadow-panel: 0 2px 4px rgba(0, 0, 0, 0.5);
   color: $text-color;
 }
 
-.app-header {
+.app-header2 {
+  position: relative; /* Относительное позиционирование */
   background-color: $primary-color;
+  padding: 10pt;
+  box-shadow: $box-shadow-header;
+  align-self: center;
+  width: 100%;
+  z-index: 1; /* Нижний слой */
+}
+
+.app-header {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 0; /* Позиционируем в верхней части контейнера */
+  left: 50%; /* Центрируем по горизонтали */
+  transform: translateX(-50%); /* Центрирование по горизонтали */
+  z-index: 2; /* Верхний слой */
+  background-color: $text-color;
   padding: $header-footer-padding;
   text-align: center;
+  border-radius: 0px 0px $border-radius $border-radius;
   box-shadow: $box-shadow-header;
+  width: 40%;
 
-  h1 {
-    margin: 0;
-    font-size: 2em;
-    color: $text-color;
-  }
+   h1 {
+  position: relative;
+  margin: 0;
+  font-size: 1.5em;
+  color: $primary-color;
+      }
+   
+     
 }
 
 .app-footer {
@@ -82,31 +102,15 @@ $box-shadow-panel: 0 2px 4px rgba(0, 0, 0, 0.5);
 
   .dropdown-container {
     margin-bottom: 20px;
-
-    mat-form-field {
-      width: 100%;
-      color: $text-color;
-
-      .mat-label {
-        color: $text-color;
-      }
-
-      .mat-select-arrow {
-        color: $text-color;
-      }
-
-      .mat-option {
-        color: $dropdown-text-color;
-        background-color: $dropdown-bg-color;
-
-        &:hover {
-          background-color: $dropdown-hover-bg-color;
-        }
-      }
-    }
+    width: 100%;
   }
+  .mat-select-value {
+    color: $text-color !important;
+  }
+  
 
-  @media (max-width: 1200px) {
+  
+    @media (max-width: 1200px) {
     width: 100%;
     order: 2;
     margin-top: 20px;

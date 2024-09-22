@@ -1,3 +1,5 @@
+// safe-config.constants.ts
+
 export interface SafeOption {
     value: string;
     display: string;
@@ -39,3 +41,4 @@ export interface SafeOption {
     { value: 'Red', display: 'Red' },
     { value: 'White', display: 'White' }
   ];
+  

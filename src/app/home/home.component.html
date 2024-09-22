@@ -1,8 +1,11 @@
 <!-- home.component.html -->
 <div class="page-container">
   <!-- Хедер -->
+  <header class="app-header2">
+  </header>
+
   <header class="app-header">
-    <h1>Конфигуратор Сейфа</h1>
+    <h1>Сейф</h1>
   </header>
 
   <!-- Основной контент -->
@@ -10,9 +13,9 @@
     <div class="left-panel">
       <form [formGroup]="safeForm">
         <!-- Фурнитура -->
-        <mat-form-field appearance="fill" class="dropdown-container">
+        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
           <mat-label>Фурнитура</mat-label>
-          <mat-select formControlName="safeFurniture" aria-label="Выбор фурнитуры">
+          <mat-select formControlName="safeFurniture" aria-label="Выбор фурнитуры" >
             <mat-option *ngFor="let option of safeFurnitures" [value]="option.value">
               {{ option.display }}
             </mat-option>
@@ -20,7 +23,7 @@
         </mat-form-field>
 
         <!-- Цвет кожи -->
-        <mat-form-field appearance="fill" class="dropdown-container">
+        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
           <mat-label>Цвет кожи</mat-label>
           <mat-select formControlName="safeType" aria-label="Выбор цвета кожи">
             <mat-option *ngFor="let option of safeTypes" [value]="option.value">
@@ -30,7 +33,7 @@
         </mat-form-field>
 
         <!-- Окантовка -->
-        <mat-form-field appearance="fill" class="dropdown-container">
+        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
           <mat-label>Окантовка</mat-label>
           <mat-select formControlName="safeOutline" aria-label="Выбор окантовки">
             <mat-option *ngFor="let option of safeTypes" [value]="option.value">
@@ -40,7 +43,7 @@
         </mat-form-field>
 
         <!-- Строчка вертикальная -->
-        <mat-form-field appearance="fill" class="dropdown-container">
+        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
           <mat-label>Строчка вертикальная</mat-label>
           <mat-select formControlName="threadVertical" aria-label="Выбор вертикальной строчки">
             <mat-option *ngFor="let option of safeThreads" [value]="option.value">
@@ -50,7 +53,7 @@
         </mat-form-field>
 
         <!-- Строчка горизонтальная -->
-        <mat-form-field appearance="fill" class="dropdown-container">
+        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
           <mat-label>Строчка горизонтальная</mat-label>
           <mat-select formControlName="threadHorizontal" aria-label="Выбор горизонтальной строчки">
             <mat-option *ngFor="let option of safeThreads" [value]="option.value">
@@ -65,19 +68,19 @@
       <!-- Наложение изображений с общим центром -->
       <div class="image-container">
         <!-- Базовое изображение -->
-        <img [src]="imagePaths['base']" [alt]="safeForm.value.safeType || 'Default Base'" class="base-image" />
+        <img [src]="imagePaths.base" [alt]="safeForm.value.safeType || 'Default Base'" class="base-image" />
 
         <!-- Фурнитура -->
-        <img *ngIf="imagePaths['furniture']" [src]="imagePaths['furniture']" [alt]="safeForm.value.safeFurniture || 'Default Furniture'" class="child-image" />
+        <img *ngIf="imagePaths.furniture" [src]="imagePaths.furniture" [alt]="safeForm.value.safeFurniture || 'Default Furniture'" class="child-image" />
 
         <!-- Окантовка -->
-        <img *ngIf="imagePaths['outline']" [src]="imagePaths['outline']" [alt]="safeForm.value.safeOutline + ' Outline' || 'Default Outline'" class="child-image" />
+        <img *ngIf="imagePaths.outline" [src]="imagePaths.outline" [alt]="safeForm.value.safeOutline + ' Outline' || 'Default Outline'" class="child-image" />
 
         <!-- Строчка вертикальная -->
-        <img *ngIf="imagePaths['threadVertical']" [src]="imagePaths['threadVertical']" [alt]="safeForm.value.threadVertical + ' Vertical Thread' || 'Default Vertical Thread'" class="child-image" />
+        <img *ngIf="imagePaths.threadVertical" [src]="imagePaths.threadVertical" [alt]="safeForm.value.threadVertical + ' Vertical Thread' || 'Default Vertical Thread'" class="child-image" />
 
         <!-- Строчка горизонтальная -->
-        <img *ngIf="imagePaths['threadHorizontal']" [src]="imagePaths['threadHorizontal']" [alt]="safeForm.value.threadHorizontal + ' Horizontal Thread' || 'Default Horizontal Thread'" class="child-image" />
+        <img *ngIf="imagePaths.threadHorizontal" [src]="imagePaths.threadHorizontal" [alt]="safeForm.value.threadHorizontal + ' Horizontal Thread' || 'Default Horizontal Thread'" class="child-image" />
       </div>
     </div>
   </div>
