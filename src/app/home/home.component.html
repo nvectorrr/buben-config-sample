@@ -66,7 +66,11 @@
 
     <div class="right-panel">
       <!-- Наложение изображений с общим центром -->
-      <div class="image-container">
+      <div class="image-container" 
+      (mousemove)="moveMagnifier($event)"
+      (mouseenter)="showMagnifier()"
+      (mouseleave)="hideMagnifier()">
+        
         <!-- Базовое изображение -->
         <img [src]="imagePaths.base" [alt]="safeForm.value.safeType || 'Default Base'" class="base-image" />
 
@@ -81,6 +85,19 @@
 
         <!-- Строчка горизонтальная -->
         <img *ngIf="imagePaths.threadHorizontal" [src]="imagePaths.threadHorizontal" [alt]="safeForm.value.threadHorizontal + ' Horizontal Thread' || 'Default Horizontal Thread'" class="child-image" />
+      
+        <!-- Лупа -->
+        <div class="magnifier" *ngIf="magnifierVisible" [ngStyle]="magnifierStyles">
+          <div class="magnifier-content" [ngStyle]="magnifierContentStyles">
+            <!-- Копии изображений для лупы -->
+            <img [src]="imagePaths.base" class="base-image magnified" />
+            <img *ngIf="imagePaths.furniture" [src]="imagePaths.furniture" class="child-image magnified" />
+            <img *ngIf="imagePaths.outline" [src]="imagePaths.outline" class="child-image magnified" />
+            <img *ngIf="imagePaths.threadVertical" [src]="imagePaths.threadVertical" class="child-image magnified" />
+            <img *ngIf="imagePaths.threadHorizontal" [src]="imagePaths.threadHorizontal" class="child-image magnified" />
+            <!-- ... остальные изображения с классом 'magnified' ... -->
+          </div>
+        </div>
       </div>
     </div>
   </div>

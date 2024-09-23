@@ -36,6 +36,12 @@ export class HomeComponent implements OnInit {
   private threadVerticalImageMap: { [key: string]: string } = {};
   private threadHorizontalImageMap: { [key: string]: string } = {};
 
+  // Свойства для лупы
+  magnifierVisible = false;
+  magnifierStyles: { [key: string]: string } = {};
+  magnifierContentStyles: { [key: string]: string } = {};
+  imageContainerRect: DOMRect | null = null;
+
   constructor(
     private titleService: Title,
     private fb: FormBuilder
@@ -75,6 +81,68 @@ export class HomeComponent implements OnInit {
       this.updateImagePaths();
     });
   }
+
+ // Методы для лупы
+ showMagnifier(): void {
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return; // Отключить на сенсорных устройствах
+  this.magnifierVisible = true;
+}
+
+hideMagnifier(): void {
+  this.magnifierVisible = false;
+  this.imageContainerRect = null;
+}
+
+moveMagnifier(event: MouseEvent): void {
+  const imageContainer = event.currentTarget as HTMLElement;
+
+  // Получаем размеры контейнера изображений
+  if (!this.imageContainerRect) {
+    this.imageContainerRect = imageContainer.getBoundingClientRect();
+  }
+
+  const magnifierSize = 200; // Размер лупы в пикселях
+  const scale = 4; // Коэффициент увеличения
+
+  // Координаты курсора относительно контейнера изображений
+  let x = event.clientX - this.imageContainerRect.left;
+  let y = event.clientY - this.imageContainerRect.top;
+
+  // Предотвращаем выход курсора за пределы изображения
+  if (x < 0) x = 0;
+  if (y < 0) y = 0;
+  if (x > this.imageContainerRect.width) x = this.imageContainerRect.width;
+  if (y > this.imageContainerRect.height) y = this.imageContainerRect.height;
+
+  // Позиция лупы
+  let magnifierX = x - magnifierSize / (scale*magnifierSize/100);
+  let magnifierY = y - magnifierSize / (scale*magnifierSize/100);
+
+  // Предотвращаем выход лупы за пределы контейнера
+  if (magnifierX < 0) magnifierX = 0;
+  if (magnifierY < 0) magnifierY = 0;
+  if (magnifierX > this.imageContainerRect.width - magnifierSize) magnifierX = this.imageContainerRect.width - magnifierSize;
+  if (magnifierY > this.imageContainerRect.height - magnifierSize) magnifierY = this.imageContainerRect.height - magnifierSize;
+
+  // Позиция увеличенного изображения внутри лупы
+  const bgPosX = -magnifierX * scale;
+  const bgPosY = -magnifierY * scale;
+
+  // Обновляем стили лупы
+  this.magnifierStyles = {
+    top: `${magnifierY}px`,
+    left: `${magnifierX}px`,
+    width: `${magnifierSize}px`,
+    height: `${magnifierSize}px`,
+  };
+
+  this.magnifierContentStyles = {
+    width: `${this.imageContainerRect.width}px`,
+    height: `${this.imageContainerRect.height}px`,
+    transform: `translate(${bgPosX}px, ${bgPosY}px) scale(${scale})`,
+    transformOrigin: 'top left',
+  };
+}
 
   // Метод для обновления путей к изображениям
   private updateImagePaths(): void {
