@@ -101,12 +101,19 @@ moveMagnifier(event: MouseEvent): void {
     this.imageContainerRect = imageContainer.getBoundingClientRect();
   }
 
-  const magnifierSize = 200; // Размер лупы в пикселях
-  const scale = 4; // Коэффициент увеличения
-
   // Координаты курсора относительно контейнера изображений
   let x = event.clientX - this.imageContainerRect.left;
   let y = event.clientY - this.imageContainerRect.top;
+
+  // если слшком далеко от картинки -> ниче не делаем
+  if (x < 250 || y < 120 || x > this.imageContainerRect.width - 250 || y > this.imageContainerRect.height - 120) {
+    this.hideMagnifier();
+  } else {
+    this.showMagnifier();
+  }
+
+  const magnifierSize = 200; // Размер лупы в пикселях
+  const scale = 4; // Коэффициент увеличения
 
   // Предотвращаем выход курсора за пределы изображения
   if (x < 0) x = 0;
@@ -128,20 +135,20 @@ moveMagnifier(event: MouseEvent): void {
   const bgPosX = -magnifierX * scale;
   const bgPosY = -magnifierY * scale;
 
-  // Обновляем стили лупы
-  this.magnifierStyles = {
-    top: `${magnifierY}px`,
-    left: `${magnifierX}px`,
-    width: `${magnifierSize}px`,
-    height: `${magnifierSize}px`,
-  };
+    // Обновляем стили лупы
+    this.magnifierStyles = {
+      top: `${magnifierY}px`,
+      left: `${magnifierX}px`,
+      width: `${magnifierSize}px`,
+      height: `${magnifierSize}px`,
+    };
 
-  this.magnifierContentStyles = {
-    width: `${this.imageContainerRect.width}px`,
-    height: `${this.imageContainerRect.height}px`,
-    transform: `translate(${bgPosX}px, ${bgPosY}px) scale(${scale})`,
-    transformOrigin: 'top left',
-  };
+    this.magnifierContentStyles = {
+      width: `${this.imageContainerRect.width}px`,
+      height: `${this.imageContainerRect.height}px`,
+      transform: `translate(${bgPosX}px, ${bgPosY}px) scale(${scale})`,
+      transformOrigin: 'top left',
+    };
 }
 
   // Метод для обновления путей к изображениям
