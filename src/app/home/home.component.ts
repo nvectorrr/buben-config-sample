@@ -50,17 +50,17 @@ export class HomeComponent implements OnInit {
 
     // Инициализация маппингов (можно вынести в константы при необходимости)
     this.safeTypes.forEach((option, index) => {
-      this.baseImageMap[option.value] = `../../assets/img/closed_safe_type/1/base-${index + 1}.png`;
-      this.outlineImageMap[option.value] = `../../assets/img/closed_safe_type/3/outline-${index + 1}.png`;
+      this.baseImageMap[option.value] = `../../assets/img/common/1/base-${index + 1}.png`;
+      this.outlineImageMap[option.value] = `../../assets/img/common/3/outline-${index + 1}.png`;
     });
 
     this.safeFurnitures.forEach((option, index) => {
-      this.furnitureImageMap[option.value] = `../../assets/img/closed_safe_type/2/furnite-${index + 1}.png`;
+      this.furnitureImageMap[option.value] = `../../assets/img/common/2/furnite-${index + 1}.png`;
     });
 
     this.safeThreads.forEach((option, index) => {
-      this.threadVerticalImageMap[option.value] = `../../assets/img/closed_safe_type/4/thread-vertical-${index + 1}.png`;
-      this.threadHorizontalImageMap[option.value] = `../../assets/img/closed_safe_type/5/thread-horizontal-${index + 1}.png`;
+      this.threadVerticalImageMap[option.value] = `../../assets/img/closed/4/thread-vertical-${index + 1}.png`;
+      this.threadHorizontalImageMap[option.value] = `../../assets/img/closed/5/thread-horizontal-${index + 1}.png`;
     });
 
     // Инициализация формы
