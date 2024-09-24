@@ -72,29 +72,29 @@
       (mouseleave)="hideMagnifier()">
         
         <!-- Базовое изображение -->
-        <img [src]="imagePaths.base" [alt]="safeForm.value.safeType || 'Default Base'" class="base-image" />
+        <img [src]="imagePaths['base']" [alt]="safeForm.value.safeType || 'Default Base'" class="base-image" />
 
         <!-- Фурнитура -->
-        <img *ngIf="imagePaths.furniture" [src]="imagePaths.furniture" [alt]="safeForm.value.safeFurniture || 'Default Furniture'" class="child-image" />
+        <img *ngIf="imagePaths['furniture']" [src]="imagePaths['furniture']" [alt]="safeForm.value.safeFurniture || 'Default Furniture'" class="child-image" />
 
         <!-- Окантовка -->
-        <img *ngIf="imagePaths.outline" [src]="imagePaths.outline" [alt]="safeForm.value.safeOutline + ' Outline' || 'Default Outline'" class="child-image" />
+        <img *ngIf="imagePaths['outline']" [src]="imagePaths['outline']" [alt]="safeForm.value.safeOutline + ' Outline' || 'Default Outline'" class="child-image" />
 
         <!-- Строчка вертикальная -->
-        <img *ngIf="imagePaths.threadVertical" [src]="imagePaths.threadVertical" [alt]="safeForm.value.threadVertical + ' Vertical Thread' || 'Default Vertical Thread'" class="child-image" />
+        <img *ngIf="imagePaths['threadVertical']" [src]="imagePaths['threadVertical']" [alt]="safeForm.value.threadVertical + ' Vertical Thread' || 'Default Vertical Thread'" class="child-image" />
 
         <!-- Строчка горизонтальная -->
-        <img *ngIf="imagePaths.threadHorizontal" [src]="imagePaths.threadHorizontal" [alt]="safeForm.value.threadHorizontal + ' Horizontal Thread' || 'Default Horizontal Thread'" class="child-image" />
+        <img *ngIf="imagePaths['threadHorizontal']" [src]="imagePaths['threadHorizontal']" [alt]="safeForm.value.threadHorizontal + ' Horizontal Thread' || 'Default Horizontal Thread'" class="child-image" />
       
         <!-- Лупа -->
         <div class="magnifier" *ngIf="magnifierVisible" [ngStyle]="magnifierStyles">
           <div class="magnifier-content" [ngStyle]="magnifierContentStyles">
             <!-- Копии изображений для лупы -->
-            <img [src]="imagePaths.base" class="base-image magnified" />
-            <img *ngIf="imagePaths.furniture" [src]="imagePaths.furniture" class="child-image magnified" />
-            <img *ngIf="imagePaths.outline" [src]="imagePaths.outline" class="child-image magnified" />
-            <img *ngIf="imagePaths.threadVertical" [src]="imagePaths.threadVertical" class="child-image magnified" />
-            <img *ngIf="imagePaths.threadHorizontal" [src]="imagePaths.threadHorizontal" class="child-image magnified" />
+            <img [src]="imagePaths['base']" class="base-image magnified" />
+            <img *ngIf="imagePaths['furniture']" [src]="imagePaths['furniture']" class="child-image magnified" />
+            <img *ngIf="imagePaths['outline']" [src]="imagePaths['outline']" class="child-image magnified" />
+            <img *ngIf="imagePaths['threadVertical']" [src]="imagePaths['threadVertical']" class="child-image magnified" />
+            <img *ngIf="imagePaths['threadHorizontal']" [src]="imagePaths['threadHorizontal']" class="child-image magnified" />
             <!-- ... остальные изображения с классом 'magnified' ... -->
           </div>
         </div>

@@ -148,10 +148,10 @@ moveMagnifier(event: MouseEvent): void {
   private updateImagePaths(): void {
     const { safeType, safeFurniture, safeOutline, threadVertical, threadHorizontal } = this.safeForm.value;
 
-    this.imagePaths.base = this.baseImageMap[safeType] || `../../assets/img/closed_safe_type/1/base-default.png`;
-    this.imagePaths.furniture = this.furnitureImageMap[safeFurniture] || '';
-    this.imagePaths.outline = this.outlineImageMap[safeOutline] || '';
-    this.imagePaths.threadVertical = this.threadVerticalImageMap[threadVertical] || '';
-    this.imagePaths.threadHorizontal = this.threadHorizontalImageMap[threadHorizontal] || '';
+    this.imagePaths['base'] = this.baseImageMap[safeType] || `../../assets/img/closed_safe_type/1/base-default.png`;
+    this.imagePaths['furniture'] = this.furnitureImageMap[safeFurniture] || '';
+    this.imagePaths['outline'] = this.outlineImageMap[safeOutline] || '';
+    this.imagePaths['threadVertical'] = this.threadVerticalImageMap[threadVertical] || '';
+    this.imagePaths['threadHorizontal'] = this.threadHorizontalImageMap[threadHorizontal] || '';
   }
 }
