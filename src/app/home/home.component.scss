@@ -1,11 +1,7 @@
 // Переменные
 $primary-color: #e6b284;
 $background-color: #1e1e1e;
-$panel-background-color: #e6b284;
 $text-color: #464646;
-$dropdown-bg-color: #ff0000;
-$dropdown-text-color: #000000;
-$dropdown-hover-bg-color: lighten($dropdown-bg-color, 10%);
 $header-footer-padding: 20px;
 $border-radius: 8px;
 $box-shadow-header: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -19,9 +15,6 @@ $box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
   object-fit: contain;
-  border: none;
-  padding: 0;
-  margin: 0;
   z-index: $z-index;
   transition: $transition;
 }
@@ -35,21 +28,21 @@ $box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .app-header2 {
-  position: relative; /* Относительное позиционирование */
+  position: relative;
   background-color: $primary-color;
   padding: 10pt;
   box-shadow: $box-shadow-header;
   align-self: center;
   width: 100%;
-  z-index: 1; /* Нижний слой */
+  z-index: 1;
 }
 
 .app-header {
-  position: absolute; /* Абсолютное позиционирование */
-  top: 0; /* Позиционируем в верхней части контейнера */
-  left: 50%; /* Центрируем по горизонтали */
-  transform: translateX(-50%); /* Центрирование по горизонтали */
-  z-index: 2; /* Верхний слой */
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
   background-color: $text-color;
   padding: $header-footer-padding;
   text-align: center;
@@ -57,14 +50,11 @@ $box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
   box-shadow: $box-shadow-header;
   width: 40%;
 
-   h1 {
-  position: relative;
-  margin: 0;
-  font-size: 1.5em;
-  color: $primary-color;
-      }
-   
-     
+  h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: $primary-color;
+  }
 }
 
 .app-footer {
@@ -95,7 +85,7 @@ $box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
 .left-panel {
   width: 25%;
   padding: 20px;
-  background-color: $panel-background-color;
+  background-color: $primary-color;
   border-radius: $border-radius;
   box-shadow: $box-shadow-panel;
   order: 2;
@@ -104,13 +94,8 @@ $box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
     margin-bottom: 20px;
     width: 100%;
   }
-  .mat-select-value {
-    color: $text-color !important;
-  }
-  
 
-  
-    @media (max-width: 1200px) {
+  @media (max-width: 1200px) {
     width: 100%;
     order: 2;
     margin-top: 20px;
@@ -129,6 +114,33 @@ $box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   order: 1;
 
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    color: $primary-color;
+    cursor: pointer;
+    z-index: 5;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+
+  &:disabled {
+    color: rgba(230, 178, 132, 0.3); // Более бледный цвет для отключенной стрелки
+    cursor: not-allowed;
+  }
+}
+
+.left-arrow {
+  left: 10px;
+}
+.right-arrow {
+  right: 0; // Изменено с 10px на 0
+}
+
   .image-container {
     position: relative;
     width: 100%;
@@ -144,15 +156,7 @@ $box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
   }
 
-  .magnifier {
-    position: absolute;
-    overflow: hidden;
-    border: 3px solid $primary-color;
-    border-radius: 20%; // Круглая лупа
-    pointer-events: none; // Пропускать события мыши
-    z-index: 10;
-  }
-  
+ 
   .magnifier-content {
     position: absolute;
     top: 0;
@@ -161,14 +165,9 @@ $box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
     height: 100%;
     transform-origin: top left;
   }
-  
-  .magnified {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: contain;
+
+  .magnifier-content img {
+    @include image-style();
   }
 
   @media (max-width: 1200px) {
@@ -201,4 +200,3 @@ $box-shadow-panel: 0 4px 8px rgba(0, 0, 0, 0.5);
 .base-image {
   opacity: 1;
 }
-

@@ -1,4 +1,3 @@
-<!-- home.component.html -->
 <div class="page-container">
   <!-- Хедер -->
   <header class="app-header2">
@@ -13,9 +12,9 @@
     <div class="left-panel">
       <form [formGroup]="safeForm">
         <!-- Фурнитура -->
-        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
+        <mat-form-field appearance="fill" class="dropdown-container" panelClass="custom-select-panel">
           <mat-label>Фурнитура</mat-label>
-          <mat-select formControlName="safeFurniture" aria-label="Выбор фурнитуры" >
+          <mat-select formControlName="safeFurniture" aria-label="Выбор фурнитуры">
             <mat-option *ngFor="let option of safeFurnitures" [value]="option.value">
               {{ option.display }}
             </mat-option>
@@ -23,7 +22,7 @@
         </mat-form-field>
 
         <!-- Цвет кожи -->
-        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
+        <mat-form-field appearance="fill" class="dropdown-container" panelClass="custom-select-panel">
           <mat-label>Цвет кожи</mat-label>
           <mat-select formControlName="safeType" aria-label="Выбор цвета кожи">
             <mat-option *ngFor="let option of safeTypes" [value]="option.value">
@@ -33,7 +32,7 @@
         </mat-form-field>
 
         <!-- Окантовка -->
-        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
+        <mat-form-field appearance="fill" class="dropdown-container" panelClass="custom-select-panel">
           <mat-label>Окантовка</mat-label>
           <mat-select formControlName="safeOutline" aria-label="Выбор окантовки">
             <mat-option *ngFor="let option of safeTypes" [value]="option.value">
@@ -43,7 +42,7 @@
         </mat-form-field>
 
         <!-- Строчка вертикальная -->
-        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
+        <mat-form-field appearance="fill" class="dropdown-container" panelClass="custom-select-panel">
           <mat-label>Строчка вертикальная</mat-label>
           <mat-select formControlName="threadVertical" aria-label="Выбор вертикальной строчки">
             <mat-option *ngFor="let option of safeThreads" [value]="option.value">
@@ -53,10 +52,40 @@
         </mat-form-field>
 
         <!-- Строчка горизонтальная -->
-        <mat-form-field appearance="fill" class="dropdown-container"  panelClass="custom-select-panel">
+        <mat-form-field appearance="fill" class="dropdown-container" panelClass="custom-select-panel">
           <mat-label>Строчка горизонтальная</mat-label>
           <mat-select formControlName="threadHorizontal" aria-label="Выбор горизонтальной строчки">
             <mat-option *ngFor="let option of safeThreads" [value]="option.value">
+              {{ option.display }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Цвет отделки -->
+        <mat-form-field appearance="fill" class="dropdown-container" panelClass="custom-select-panel">
+          <mat-label>Цвет отделки</mat-label>
+          <mat-select formControlName="safeFinishing" aria-label="Выбор цвета отделки">
+            <mat-option *ngFor="let option of safeFinishes" [value]="option.value">
+              {{ option.display }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Количество ящиков -->
+        <mat-form-field appearance="fill" class="dropdown-container" panelClass="custom-select-panel">
+          <mat-label>Количество ящиков</mat-label>
+          <mat-select formControlName="shelfCount" aria-label="Выбор количества ящиков">
+            <mat-option *ngFor="let option of shelfCounts" [value]="option.value">
+              {{ option.display }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Цвет дерева -->
+        <mat-form-field appearance="fill" class="dropdown-container" panelClass="custom-select-panel">
+          <mat-label>Цвет дерева</mat-label>
+          <mat-select formControlName="woodColor" aria-label="Выбор цвета дерева">
+            <mat-option *ngFor="let option of woodColors" [value]="option.value">
               {{ option.display }}
             </mat-option>
           </mat-select>
@@ -65,37 +94,58 @@
     </div>
 
     <div class="right-panel">
+      <!-- Стрелки -->
+      <button class="arrow left-arrow" (click)="goToPreviousStage()" [disabled]="isPreviousDisabled()">
+        &#9664;
+      </button>
+      <button class="arrow right-arrow" (click)="goToNextStage()" [disabled]="isNextDisabled()">
+        &#9654;
+      </button>
       <!-- Наложение изображений с общим центром -->
       <div class="image-container" 
-      (mousemove)="moveMagnifier($event)"
-      (mouseenter)="showMagnifier()"
-      (mouseleave)="hideMagnifier()">
+           (mousemove)="moveMagnifier($event)"
+           (mouseenter)="showMagnifier()"
+           (mouseleave)="hideMagnifier()">
         
-        <!-- Базовое изображение -->
+        <!-- Всегда отображаемые изображения -->
         <img [src]="imagePaths['base']" [alt]="safeForm.value.safeType || 'Default Base'" class="base-image" />
-
-        <!-- Фурнитура -->
         <img *ngIf="imagePaths['furniture']" [src]="imagePaths['furniture']" [alt]="safeForm.value.safeFurniture || 'Default Furniture'" class="child-image" />
-
-        <!-- Окантовка -->
         <img *ngIf="imagePaths['outline']" [src]="imagePaths['outline']" [alt]="safeForm.value.safeOutline + ' Outline' || 'Default Outline'" class="child-image" />
-
-        <!-- Строчка вертикальная -->
         <img *ngIf="imagePaths['threadVertical']" [src]="imagePaths['threadVertical']" [alt]="safeForm.value.threadVertical + ' Vertical Thread' || 'Default Vertical Thread'" class="child-image" />
-
-        <!-- Строчка горизонтальная -->
         <img *ngIf="imagePaths['threadHorizontal']" [src]="imagePaths['threadHorizontal']" [alt]="safeForm.value.threadHorizontal + ' Horizontal Thread' || 'Default Horizontal Thread'" class="child-image" />
-      
+
+        <!-- Отображаемые на втором этапе изображения -->
+        <ng-container *ngIf="stage >= 2">
+          <img *ngIf="imagePaths['dor']" [src]="imagePaths['dor']" [alt]="safeForm.value.safeType || 'Default Door'" class="child-image" />
+          <img *ngIf="imagePaths['finishing']" [src]="imagePaths['finishing']" [alt]="safeForm.value.safeFinishing || 'Default Finishing'" class="child-image" />
+          <img *ngIf="imagePaths['wood']" [src]="imagePaths['wood']" [alt]="safeForm.value.woodColor || 'Default Wood'" class="child-image" />
+          <img *ngIf="imagePaths['finishingMechanism']" [src]="imagePaths['finishingMechanism']" [alt]="safeForm.value.safeFinishing + ' Finishing Mechanism' || 'Default Finishing Mechanism'" class="child-image" />
+          <img *ngIf="imagePaths['furnitureMechanism']" [src]="imagePaths['furnitureMechanism']" [alt]="safeForm.value.safeFurniture + ' Furniture Mechanism' || 'Default Furniture Mechanism'" class="child-image" />
+          <img *ngIf="imagePaths['dorFurniture']" [src]="imagePaths['dorFurniture']" [alt]="safeForm.value.safeFurniture || 'Default Dor Furniture'" class="child-image" />
+          <img *ngIf="imagePaths['dorThread']" [src]="imagePaths['dorThread']" [alt]="safeForm.value.threadHorizontal || 'Default Dor Thread'" class="child-image" />
+        </ng-container>
+
         <!-- Лупа -->
         <div class="magnifier" *ngIf="magnifierVisible" [ngStyle]="magnifierStyles">
           <div class="magnifier-content" [ngStyle]="magnifierContentStyles">
-            <!-- Копии изображений для лупы -->
-            <img [src]="imagePaths['base']" class="base-image magnified" />
-            <img *ngIf="imagePaths['furniture']" [src]="imagePaths['furniture']" class="child-image magnified" />
-            <img *ngIf="imagePaths['outline']" [src]="imagePaths['outline']" class="child-image magnified" />
-            <img *ngIf="imagePaths['threadVertical']" [src]="imagePaths['threadVertical']" class="child-image magnified" />
-            <img *ngIf="imagePaths['threadHorizontal']" [src]="imagePaths['threadHorizontal']" class="child-image magnified" />
-            <!-- ... остальные изображения с классом 'magnified' ... -->
+            <!-- Наложение изображений внутри лупы -->
+            <!-- Всегда отображаемые изображения -->
+            <img [src]="imagePaths['base']" class="base-image" />
+            <img *ngIf="imagePaths['furniture']" [src]="imagePaths['furniture']" class="child-image" />
+            <img *ngIf="imagePaths['outline']" [src]="imagePaths['outline']" class="child-image" />
+            <img *ngIf="imagePaths['threadVertical']" [src]="imagePaths['threadVertical']" class="child-image" />
+            <img *ngIf="imagePaths['threadHorizontal']" [src]="imagePaths['threadHorizontal']" class="child-image" />
+
+            <!-- Отображаемые на втором этапе изображения -->
+            <ng-container *ngIf="stage >= 2">
+              <img *ngIf="imagePaths['dor']" [src]="imagePaths['dor']" class="child-image" />
+              <img *ngIf="imagePaths['finishing']" [src]="imagePaths['finishing']" class="child-image" />
+              <img *ngIf="imagePaths['wood']" [src]="imagePaths['wood']" class="child-image" />
+              <img *ngIf="imagePaths['finishingMechanism']" [src]="imagePaths['finishingMechanism']" class="child-image" />
+              <img *ngIf="imagePaths['furnitureMechanism']" [src]="imagePaths['furnitureMechanism']" class="child-image" />
+              <img *ngIf="imagePaths['dorFurniture']" [src]="imagePaths['dorFurniture']" class="child-image" />
+              <img *ngIf="imagePaths['dorThread']" [src]="imagePaths['dorThread']" class="child-image" />
+            </ng-container>
           </div>
         </div>
       </div>
